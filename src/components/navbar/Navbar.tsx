@@ -23,7 +23,7 @@ export default function Navbar({ activeLink = "HOME" }: NavbarProps) {
     <nav className={styles.nav}>
       {/* Logo */}
       <div className={styles.logo} onClick={() => navigate("/")} style={{ cursor: "pointer" }}>
-        <img src={logo} className={styles.logoImg}/>
+        <img src={logo} alt="logo" className={styles.logoImg}/>
       </div>
 
       {/* Links */}
