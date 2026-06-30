@@ -141,11 +141,11 @@
 }
 
 .copyAnim {
-  animation: fadeUp 1.1s ease-out 1.0s forwards;
+  animation: fadeUp 1.1s ease-out 0.7s forwards;
 }
 
 .ctaAnim {
-  animation: fadeUp 1s ease-out 1.3s forwards;
+  animation: fadeUp 1s ease-out 0.7s forwards;
 }
 
 .imageAnim {

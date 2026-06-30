@@ -1,0 +1,110 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   Navbar.module.css — Kippo Ramen
+   Tokens: vermilion #C0392B · charcoal #111111 · cream #F5F0E8
+───────────────────────────────────────────────────────────────────────────── */
+
+.nav {
+  --vermilion: #c0392b;
+  --charcoal:  #111111;
+  --cream:     #f5f0e8;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  height: 64px;
+  background-color: var(--charcoal);
+  border-bottom: 1px solid #2a2a2a;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* ── Logo ─────────────────────────────────────────────────────────────────── */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.logoImg{
+    height: 30px;
+    width: 100%;
+}
+/* ── Links ────────────────────────────────────────────────────────────────── */
+.links {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 2.5rem;
+}
+
+.link {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: "Zen Maru Gothic", sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  color: var(--cream);
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.link:hover {
+  opacity: 1;
+}
+
+.linkActive {
+  color: var(--vermilion);
+  opacity: 1;
+}
+
+/* ── CTAs ─────────────────────────────────────────────────────────────────── */
+.ctas {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.btnOutline {
+  padding: 0.45rem 1.1rem;
+  font-family: "Zen Maru Gothic", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  background: transparent;
+  border: 1.5px solid var(--cream);
+  color: var(--cream);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btnOutline:hover {
+  background: var(--cream);
+  color: var(--charcoal);
+}
+
+.btnFilled {
+  padding: 0.45rem 1.1rem;
+  font-family: "Zen Maru Gothic", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  background: var(--vermilion);
+  border: 1.5px solid var(--vermilion);
+  color: #fff;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btnFilled:hover {
+  opacity: 0.85;
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .links {
+    display: none;
+  }
+}

@@ -1,9 +1,10 @@
 import styles from './Hero.module.css';
 import logo from '../assets/logo.png';
 import heroSpread from '../assets/hero-spread.png';
-import { RefObject } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function Hero({ menu }: { menu: RefObject<HTMLDivElement | null> }) {
+function Hero() {
+  const navigate = useNavigate()
   return (
     <section className={styles.hero}>
       <div className={styles.panel}>
@@ -34,10 +35,7 @@ function Hero({ menu }: { menu: RefObject<HTMLDivElement | null> }) {
           type="button"
           className={`${styles.cta} ${styles.animate} ${styles.ctaAnim}`}
           onClick={() => {
-            menu.current?.scrollIntoView({
-              behavior: "smooth",
-              block: "start",
-            });
+            navigate("/Menu")
           }}
         >
           View Our Menu

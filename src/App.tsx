@@ -1,27 +1,17 @@
 import './App.css';
+import { Route, Routes } from 'react-router-dom';
+import Layout from './components/Layout';
 import Hero from './components/Hero';
-import Gallery from './components/Gallery';
-import { menu } from './menu';
-import { useRef } from 'react';
+import Menu from './pages/Menu/Menu';
 
 function App(): JSX.Element {
-  const menuRef = useRef<HTMLDivElement | null>(null);
-
   return (
-    <div className="app">
-      <Hero menu={menuRef}/>
-      {menu.map((section) => (
-        <div
-          key={section.title}
-          ref={section.title === "Ramen" ? menuRef : undefined}
-        >
-          <Gallery
-            title={section.title}
-            items={section.items}
-          />
-        </div>
-      ))}
-    </div>
+    <Routes>
+      <Route element={<Layout />}>
+        <Route path="/" element={<Hero />} />
+        <Route path="/Menu" element={<Menu />} />
+      </Route>
+    </Routes>
   );
 }
 
