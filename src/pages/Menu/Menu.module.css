@@ -288,6 +288,7 @@
     height: 100%;
     object-fit: cover;
     border-radius: 100%;
+    border: 1px solid var(--color-gold);
 }
 
 .imageWrap {
@@ -347,9 +348,9 @@
 
 /* ── Item text ────────────────────────────────────────────────────────────── */
 .itemName {
-  font-family: var(--font-display);
+  font-family: "Zen Maru Gothic", sans-serif;
   font-size: 0.78rem;
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: 0.1em;
   color: var(--cream);
   margin: 0 0 0.3rem;

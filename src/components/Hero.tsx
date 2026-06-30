@@ -1,5 +1,8 @@
 import styles from './Hero.module.css';
 import logo from '../assets/logo.png';
+import toast from '../assets/toast.png'
+import uberEats from '../assets/uber-eats.png'
+import doordash from '../assets/doordash.png'
 import heroSpread from '../assets/hero-spread.png';
 import { useNavigate } from 'react-router-dom';
 
@@ -40,6 +43,12 @@ function Hero() {
         >
           View Our Menu
         </button>
+
+        <div className={`${styles.onlineOrder}  ${styles.animate} ${styles.onlineOrderAnim}`}>
+          <img src={toast}></img>
+          <img src={uberEats}></img>
+          <img src={doordash}></img>
+        </div>
 
       </div>
 

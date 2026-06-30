@@ -152,6 +152,10 @@
   animation: fadeIn 0.9s ease-out 0s forwards;
 }
 
+.onlineOrderAnim {
+  animation: fadeIn 1s ease-out 1.5s forwards;
+}
+
 /* =========================
    ACCESSIBILITY
 ========================= */
@@ -162,7 +166,8 @@
   .dividerAnim,
   .copyAnim,
   .ctaAnim,
-  .imageAnim {
+  .imageAnim,
+  .onlineOrderAnim {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
@@ -189,6 +194,30 @@
 }
 
 /* =========================
+   ONLINE ORDER
+========================= */
+
+.onlineOrder {
+  display: flex;
+  margin-top: 60px;
+  width: 100%;
+  justify-content: space-evenly;
+  gap: 10px;
+}
+
+.onlineOrder > img {
+  border-radius: 10px;
+  height: 40px;
+  width: auto;
+  transition: 0.3s;
+}
+
+.onlineOrder > img:hover {
+  filter: brightness(80%);
+  transform: translateY(-2px);
+}
+
+/* =========================
    ACCESSIBILITY
 ========================= */
 
@@ -199,6 +228,7 @@
   .dividerAnim,
   .copyAnim,
   .ctaAnim,
+  .onlineOrderAnim
   .imageAnim {
     animation: none !important;
     opacity: 1 !important;
