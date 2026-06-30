@@ -45,9 +45,9 @@ function Hero() {
         </button>
 
         <div className={`${styles.onlineOrder}  ${styles.animate} ${styles.onlineOrderAnim}`}>
-          <img src={toast}></img>
-          <img src={uberEats}></img>
-          <img src={doordash}></img>
+          <img src={toast} alt="toast banner"></img>
+          <img src={uberEats} alt="uber eats banner"></img>
+          <img src={doordash} alt="doordash banner"></img>
         </div>
 
       </div>
