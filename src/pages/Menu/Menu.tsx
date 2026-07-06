@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import styles from './Menu.module.css';
-import { menu } from '../../menu';
+import { menu, MenuItem } from '../../menu';
 
 const BADGE_CLASS = {
   'BEST SELLER': styles.badgeBestseller,
@@ -8,6 +8,25 @@ const BADGE_CLASS = {
   SPICY: styles.badgeSpicy,
   NEW: styles.badgeNew,
 } as const;
+
+function ItemCard({ item }: { item: MenuItem }): JSX.Element {
+  return (
+    <div className={styles.card}>
+      <div className={styles.imageWrap}>
+        {item.tag && (
+          <span className={`${styles.badge} ${BADGE_CLASS[item.tag]}`}>
+            {item.tag}
+          </span>
+        )}
+
+        <img src={item.src} alt={item.label} className={styles.image} />
+      </div>
+
+      <p className={styles.itemName}>{item.label}</p>
+      {/* {item.description && <p className={styles.itemSub}>{item.description}</p>} */}
+    </div>
+  );
+}
 
 export default function Menu(): JSX.Element {
   const [active, setActive] = useState<string>(menu[0].title);
@@ -56,28 +75,26 @@ export default function Menu(): JSX.Element {
           <span className={styles.star}>✦</span>
         </div>
 
-        <div className={styles.grid}>
-          {activeSection.items.map((item) => (
-            <div key={item.label} className={styles.card}>
-              <div className={styles.imageWrap}>
-                {item.tag && (
-                  <span
-                    className={`${styles.badge} ${BADGE_CLASS[item.tag]}`}
-                  >
-                    {item.tag}
-                  </span>
-                )}
+        <div className={styles.sectionContainer}>
+          {activeSection.subsections ? (
+            activeSection.subsections.map((sub) => (
+              <div key={sub.title} className={styles.subsection}>
+                <h3 className={styles.subsectionTitle}>{sub.title}</h3>
 
-                <img
-                  src={item.src}
-                  alt={item.label}
-                  className={styles.image}
-                />
+                <div className={styles.grid}>
+                  {sub.items.map((item) => (
+                    <ItemCard key={item.label} item={item} />
+                  ))}
+                </div>
               </div>
-
-              <p className={styles.itemName}>{item.label}</p>
+            ))
+          ) : (
+            <div className={styles.grid}>
+              {activeSection.items?.map((item) => (
+                <ItemCard key={item.label} item={item} />
+              ))}
             </div>
-          ))}
+          )}
         </div>
       </section>
     </div>
