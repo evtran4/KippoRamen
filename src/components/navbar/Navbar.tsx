@@ -3,13 +3,13 @@ import { useNavigate } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import logo from "../../assets/logo.png"
 
-const NAV_LINKS = ["HOME", "MENU", "LOCATIONS", "CONTACT"] as const;
+const NAV_LINKS = ["HOME", "MENU", "SPECIALS", "LOYALTY"] as const;
 
 const LINK_TO_PATH: Record<(typeof NAV_LINKS)[number], string> = {
   HOME:      "/",
   MENU:      "/Menu",
-  LOCATIONS: "/Locations",
-  CONTACT:   "/Contact",
+  SPECIALS: "/Specials",
+  LOYALTY:   "/Loyalty",
 };
 
 interface NavbarProps {
@@ -42,7 +42,9 @@ export default function Navbar({ activeLink = "HOME" }: NavbarProps) {
 
       {/* CTAs */}
       <div className={styles.ctas}>
-        <button className={styles.btnOutline}>TAKE AWAY</button>
+        <button className={styles.btnOutline} onClick={()=>{
+          navigate('/Contact')
+        }}>CONTACT</button>
         <button className={styles.btnFilled}>ORDER NOW</button>
       </div>
     </nav>

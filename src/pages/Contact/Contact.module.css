@@ -1,0 +1,162 @@
+.wrapper {
+    position: relative;
+    min-height: 100%;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(12,12,12,.96) 0%,
+            rgba(12,12,12,.92) 45%,
+            rgba(12,12,12,.55) 100%
+        );
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+
+    width: min(1400px,92%);
+    margin: auto;
+
+    padding: 90px 0;
+
+    display: grid;
+    grid-template-columns: 1.3fr .8fr;
+    gap: 120px;
+}
+
+.subtitle{
+    color:var(--color-vermilion);
+    letter-spacing:6px;
+    font-size:.9rem;
+    margin-bottom:18px;
+}
+
+.left h1{
+    color:#F2ECE6;
+    font-size:4.4rem;
+    line-height:1.05;
+    margin:0;
+    font-weight:400;
+}
+
+.divider{
+    width:580px;
+    max-width:100%;
+    margin:34px 0 40px;
+}
+
+.row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:22px;
+}
+
+.field{
+    display:flex;
+    flex-direction:column;
+    margin-bottom:24px;
+}
+
+.field label{
+    color:#CFC7BC;
+    text-transform:uppercase;
+    letter-spacing:3px;
+    font-size:.78rem;
+    margin-bottom:10px;
+}
+
+.field input,
+.field select,
+.field textarea{
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.08);
+    color:white;
+
+    padding:16px;
+
+    font-size:1rem;
+
+    transition:.2s;
+}
+
+.field input::placeholder,
+.field textarea::placeholder{
+    color:#8f8f8f;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus{
+    outline:none;
+    border-color:var(--color-vermilion);
+}
+
+textarea{
+    resize:vertical;
+    min-height:170px;
+}
+
+.bottom{
+    display:flex;
+    align-items:center;
+    gap:30px;
+}
+
+button{
+    background:var(--color-vermilion);
+    color:white;
+    border:none;
+    padding:18px 44px;
+    letter-spacing:2px;
+    cursor:pointer;
+}
+
+button:disabled{
+    opacity:.45;
+    cursor:not-allowed;
+}
+
+.success{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:#d8d8d8;
+}
+
+.right{
+    display:flex;
+    flex-direction:column;
+    margin-top:130px;
+}
+
+.info{
+    display:flex;
+    gap:22px;
+    padding:30px 0;
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.info svg{
+    color:var(--color-vermilion);
+    font-size:32px;
+}
+
+.info h4{
+    color:#F2ECE6;
+    margin:0 0 8px;
+    font-weight:500;
+}
+
+.info p{
+    color:#c3c3c3;
+    line-height:1.7;
+    margin:0;
+}

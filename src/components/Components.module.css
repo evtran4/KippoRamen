@@ -1,0 +1,100 @@
+.review {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  padding: 18px;
+  border: 1px solid #f2f2f2;
+  border-radius: 12px;
+  background: #f2f2f2;
+
+  width: 400px;
+  height: 200px;
+
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+
+  user-select: none;
+}
+
+.name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #202124;
+}
+
+.stars {
+  display: flex;
+  gap: 2px;
+  margin-top: 2px;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.filledStar {
+  color: #fbbc04;
+}
+
+.emptyStar {
+  color: #dadce0;
+}
+
+.text {
+  margin: 0;
+  color: #3c4043;
+  line-height: 1.5;
+  font-size: 14px;
+
+  flex: 1;
+}
+
+.wrapper {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+
+.track {
+  display: flex;
+  gap: 60px;
+  width: max-content;
+
+  animation: scroll 100s linear infinite;
+}
+
+.slide {
+  flex-shrink: 0;
+  width: 350px;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    /* Move by exactly half since we duplicated the reviews */
+    transform: translateX(calc(-50% - 10px));
+  }
+}

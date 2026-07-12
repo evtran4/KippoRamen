@@ -1,11 +1,11 @@
 import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "./navbar/Navbar";
 
-const PATH_TO_ACTIVE: Record<string, "HOME" | "MENU" | "LOCATIONS" | "CONTACT"> = {
+const PATH_TO_ACTIVE: Record<string, "HOME" | "MENU" | "SPECIALS" | "LOYALTY"> = {
   "/":          "HOME",
   "/Menu":      "MENU",
-  "/Locations": "LOCATIONS",
-  "/Contact":   "CONTACT",
+  "/Specials": "SPECIALS",
+  "/Loyalty":   "LOYALTY",
 };
 
 export default function Layout() {

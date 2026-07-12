@@ -5,60 +5,66 @@ import uberEats from '../assets/uber-eats.png'
 import doordash from '../assets/doordash.png'
 import heroSpread from '../assets/hero-spread.png';
 import { useNavigate } from 'react-router-dom';
+import ReviewScroll from './ReviewScroll';
 
 function Hero() {
   const navigate = useNavigate()
   return (
-    <section className={styles.hero}>
-      <div className={styles.panel}>
+    <div className="page">
+      <section className={styles.hero}>
+        <div className={styles.panel}>
 
-        <div className={styles.titleContainer}>
-          <img
-            src={logo}
-            alt="Kippo Ramen"
-            className={`${styles.logo} ${styles.animate} ${styles.logoAnim}`}
-          />
+          <div className={styles.titleContainer}>
+            <img
+              src={logo}
+              alt="Kippo Ramen"
+              className={`${styles.logo} ${styles.animate} ${styles.logoAnim}`} />
 
-          <p className={`${styles.tagline} ${styles.animate} ${styles.taglineAnim}`}>
-            Authentic Japanese Cuisine
+            <p className={`${styles.tagline} ${styles.animate} ${styles.taglineAnim}`}>
+              Authentic Japanese Cuisine
+            </p>
+          </div>
+
+          <hr className={`${styles.divider} ${styles.animate} ${styles.dividerAnim}`} />
+
+          <p className={`${styles.copy} ${styles.animate} ${styles.copyAnim}`}>
+            We offer authentic ramen dishes, including{' '}
+            <span className={styles.accent}>Hakata tonkotsu</span>, rich{' '}
+            <span className={styles.accent}>Sapporo miso</span>, and vegetarian
+            and vegan options. Enjoy delicious meals served by our friendly,
+            attentive staff in a relaxing atmosphere.
+            <br></br><br></br><br></br>
+            Join us at 606 S Broadway, Baltimore, MD 21231
           </p>
+
+          <button
+            type="button"
+            className={`${styles.cta} ${styles.animate} ${styles.ctaAnim}`}
+            onClick={() => {
+              navigate("/Menu");
+            } }
+          >
+            View Our Menu
+          </button>
+
+          <div className={`${styles.onlineOrder}  ${styles.animate} ${styles.onlineOrderAnim}`}>
+            <img src={toast} alt="toast banner"></img>
+            <img src={uberEats} alt="uber eats banner"></img>
+            <img src={doordash} alt="doordash banner"></img>
+          </div>
         </div>
 
-        <hr className={`${styles.divider} ${styles.animate} ${styles.dividerAnim}`} />
-
-        <p className={`${styles.copy} ${styles.animate} ${styles.copyAnim}`}>
-          We offer authentic ramen dishes, including{' '}
-          <span className={styles.accent}>Hakata tonkotsu</span>, rich{' '}
-          <span className={styles.accent}>Sapporo miso</span>, and vegetarian
-          and vegan options. Enjoy delicious meals served by our friendly,
-          attentive staff in a relaxing atmosphere.
-        </p>
-
-        <button
-          type="button"
-          className={`${styles.cta} ${styles.animate} ${styles.ctaAnim}`}
-          onClick={() => {
-            navigate("/Menu")
-          }}
-        >
-          View Our Menu
-        </button>
-
-        <div className={`${styles.onlineOrder}  ${styles.animate} ${styles.onlineOrderAnim}`}>
-          <img src={toast} alt="toast banner"></img>
-          <img src={uberEats} alt="uber eats banner"></img>
-          <img src={doordash} alt="doordash banner"></img>
+        <div className={`${styles.imageSide} ${styles.animate} ${styles.imageAnim}`}>
+          <img
+            src={heroSpread}
+            alt="A spread of ramen, gyoza, fried chicken and rice at Kippo Ramen" />
         </div>
-
+      </section>
+      
+      <div>
+            <ReviewScroll></ReviewScroll>
       </div>
-
-      <div className={`${styles.imageSide} ${styles.animate} ${styles.imageAnim}`}>
-        <img
-          src={heroSpread}
-          alt="A spread of ramen, gyoza, fried chicken and rice at Kippo Ramen"
-        />
-      </div>
-    </section>
+    </div>
   );
 }
 
