@@ -5,6 +5,13 @@
   background-color: #111111;
 }
 
+.reviewScrollContainer {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+
 /* =========================
    PANEL LAYOUT
 ========================= */
@@ -56,9 +63,9 @@
 }
 
 .cta {
-  display: inline-flex;
   align-self: center;
-  align-items: center;
+  width: fit-content;
+  min-width: 140px;
   gap: 0.6rem;
   margin-top: 0.5rem;
   padding: 0.85rem 1.75rem;
@@ -152,27 +159,6 @@
   animation: fadeIn 0.9s ease-out 0s forwards;
 }
 
-.onlineOrderAnim {
-  animation: fadeIn 1s ease-out 1.5s forwards;
-}
-
-/* =========================
-   ACCESSIBILITY
-========================= */
-@media (prefers-reduced-motion: reduce) {
-  .animate,
-  .logoAnim,
-  .taglineAnim,
-  .dividerAnim,
-  .copyAnim,
-  .ctaAnim,
-  .imageAnim,
-  .onlineOrderAnim {
-    animation: none !important;
-    opacity: 1 !important;
-    transform: none !important;
-  }
-}
 /* =========================
    MOBILE
 ========================= */
@@ -184,47 +170,156 @@
   }
 
   .panel {
-    padding: 3rem 1.5rem 2.5rem;
-    text-align: left;
+    order: 2;
+    padding: 2.5rem 1.5rem 3rem;
+    align-items: center;
+    text-align: center;
   }
 
-  .imageSide {
-    aspect-ratio: 4 / 3;
+  .titleContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .tagline {
-    font-size: 4vw; 
+    font-size: 4vw;
+    text-align: center;
+  }
+
+  .cta {
+    align-self: center;
+  }
+
+  /* Image becomes a banner up top that fades into the panel
+     background instead of sitting as an isolated block below. */
+  .imageSide {
+    order: 1;
+    aspect-ratio: 4 / 3;
+  }
+
+  .imageSide::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(17, 17, 17, 0) 55%,
+      #111111 100%
+    );
+    pointer-events: none;
   }
 }
 
 /* =========================
-   ONLINE ORDER
+   BOTTOM BAR (order badges + reviews)
 ========================= */
+
+.bottomBar {
+  background: linear-gradient(180deg, #111111 0%, #0a0a0a 100%);
+  border-top: 1px solid rgba(200, 168, 100, 0.18);
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.25rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.orderRow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.orderLabel {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  white-space: nowrap;
+}
 
 .onlineOrder {
   display: flex;
-  margin-top: 60px;
-  width: 100%;
-  justify-content: space-evenly;
+  justify-content: center;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 .onlineOrder > img {
   border-radius: 10px;
-  height: 40px;
+  height: 38px;
   width: auto;
   transition: 0.3s;
 }
 
 .onlineOrder > img:hover {
-  filter: brightness(80%);
+  filter: brightness(85%);
   transform: translateY(-2px);
+}
+
+.barDivider {
+  width: 60px;
+  height: 1px;
+  background: var(--color-vermilion);
+}
+
+.reviewsBlock {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  overflow: hidden;
+}
+
+.reviewsHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  text-align: center;
+}
+
+.reviewsLabel {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.3rem;
+  letter-spacing: 0.03em;
+  color: var(--color-cream);
+}
+
+.reviewsSub {
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  color: var(--color-gold);
+}
+
+@media (max-width: 880px) {
+  .bottomBar {
+    padding: 2.5rem 1.25rem 3rem;
+    gap: 1.75rem;
+  }
+
+  .orderRow {
+    gap: 1.25rem;
+  }
 }
 
 /* =========================
    ACCESSIBILITY
 ========================= */
-
 @media (prefers-reduced-motion: reduce) {
   .animate,
   .logoAnim,
@@ -232,10 +327,13 @@
   .dividerAnim,
   .copyAnim,
   .ctaAnim,
-  .onlineOrderAnim
   .imageAnim {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
+  }
+
+  .imageSide::after {
+    display: none;
   }
 }

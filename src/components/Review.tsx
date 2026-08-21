@@ -32,7 +32,7 @@ function stringToColor(name: string) {
   }
 
   return COLORS[Math.abs(hash) % COLORS.length];
-} 
+}
 
 export default function Review({ review }: GoogleReviewProps) {
   const avatarColor = useMemo(() => stringToColor(review.name), [review.name]);

@@ -46,12 +46,6 @@ function Hero() {
           >
             View Our Menu
           </button>
-
-          <div className={`${styles.onlineOrder}  ${styles.animate} ${styles.onlineOrderAnim}`}>
-            <img src={toast} alt="toast banner"></img>
-            <img src={uberEats} alt="uber eats banner"></img>
-            <img src={doordash} alt="doordash banner"></img>
-          </div>
         </div>
 
         <div className={`${styles.imageSide} ${styles.animate} ${styles.imageAnim}`}>
@@ -60,10 +54,44 @@ function Hero() {
             alt="A spread of ramen, gyoza, fried chicken and rice at Kippo Ramen" />
         </div>
       </section>
-      
-      <div>
+
+      <section className={styles.bottomBar}>
+        <div className={styles.orderRow}>
+          <span className={styles.orderLabel}>Order Online</span>
+          <div className={styles.onlineOrder}>
+            <img 
+              src={toast} 
+              alt="toast banner"
+              onClick={() => window.open('https://order.toasttab.com/online/kippo-ramen-606-s-broadway', '_blank')}
+              style={{ cursor: 'pointer' }}
+            />
+            <img 
+              src={uberEats} 
+              alt="uber eats banner"
+              onClick={() => window.open('https://www.ubereats.com/store/kippo-ramen/FdMFTj7LTWOEUFTAiIKTyQ?srsltid=AfmBOoqU-Vqbkij7WYhCdxyStJdlIkizml854ijzVO-Sav3umWoyVMY-', '_blank')}
+              style={{ cursor: 'pointer' }}
+            />
+            <img 
+              src={doordash} 
+              alt="doordash banner"
+              onClick={() => window.open('https://www.doordash.com/store/kippo-ramen-baltimore-25458769/25836351/?srsltid=AfmBOopOzcSrn111dgMC8V9yzfQnJSf-WdRvV2O2Ui-7Id32L9q9xS9V', '_blank')}
+              style={{ cursor: 'pointer' }}
+            />
+          </div>
+        </div>
+
+        <div className={styles.barDivider} />
+
+        <div className={styles.reviewsBlock}>
+          <div className={styles.reviewsHeader}>
+            <span className={styles.reviewsLabel}>What Our Guests Say</span>
+            <span className={styles.reviewsSub}>★★★★★ &nbsp;Google Reviews</span>
+          </div>
+          <div className={styles.reviewScrollContainer}>
             <ReviewScroll></ReviewScroll>
-      </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

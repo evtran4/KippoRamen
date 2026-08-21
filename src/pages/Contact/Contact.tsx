@@ -4,12 +4,14 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PhoneIcon from "@mui/icons-material/Phone";
 import EmailIcon from "@mui/icons-material/Email";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import { CheckCircleOutlined } from '@mui/icons-material';
+import { CheckCircleOutlined } from "@mui/icons-material";
 
 import divider from "../../assets/star-divider.png";
 import background from "../../assets/contact-background.jpg";
 
 import styles from "./Contact.module.css";
+
+import emailjs from "@emailjs/browser";
 
 const SUBJECTS = [
   "General Question",
@@ -42,33 +44,43 @@ export default function Contact() {
     [name, email, message, finalSubject]
   );
 
-  function submit(e: React.FormEvent) {
+  async function submit(e: React.FormEvent) {
     e.preventDefault();
 
-    const data = {
-      name,
-      email,
-      subject: finalSubject,
-      message,
-    };
+    if (!valid) return;
 
-    console.log(data);
+    try {
+      await emailjs.send(
+        "service_m1zqcme",
+        "template_3hjcxlj",
+        {
+          name,
+          email,
+          subject: finalSubject,
+          message,
+        },
+        "V2E5HWAaUcNCy_TdS"
+      );
 
-    setSubmitted(true);
+      setSubmitted(true);
 
-    setName("");
-    setEmail("");
-    setSubject("General Question");
-    setOtherSubject("");
-    setMessage("");
+      setName("");
+      setEmail("");
+      setSubject("General Question");
+      setOtherSubject("");
+      setMessage("");
 
-    setTimeout(() => setSubmitted(false), 5000);
+      setTimeout(() => setSubmitted(false), 5000);
+    } catch (err) {
+      console.error(err);
+      alert("Failed to send message.");
+    }
   }
 
   return (
     <div
       className={styles.wrapper}
-     style={{ backgroundImage: `url(${background})` }}
+      style={{ backgroundImage: `url(${background})` }}
     >
       <div className={styles.overlay} />
 
@@ -95,9 +107,7 @@ export default function Contact() {
 
                 <input
                   value={name}
-                  onChange={(e) =>
-                    setName(e.target.value)
-                  }
+                  onChange={(e) => setName(e.target.value)}
                   placeholder="Your name"
                 />
               </div>
@@ -108,9 +118,7 @@ export default function Contact() {
                 <input
                   type="email"
                   value={email}
-                  onChange={(e) =>
-                    setEmail(e.target.value)
-                  }
+                  onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@example.com"
                 />
               </div>
@@ -138,6 +146,8 @@ export default function Contact() {
                 <label>Other Subject</label>
 
                 <input
+                  type="text"
+                  maxLength={100}
                   value={otherSubject}
                   onChange={(e) =>
                     setOtherSubject(e.target.value)
@@ -152,9 +162,7 @@ export default function Contact() {
               <textarea
                 rows={7}
                 value={message}
-                onChange={(e) =>
-                  setMessage(e.target.value)
-                }
+                onChange={(e) => setMessage(e.target.value)}
                 placeholder="Write your message..."
               />
             </div>
@@ -166,7 +174,7 @@ export default function Contact() {
 
               {submitted && (
                 <div className={styles.success}>
-                  <CheckCircleOutlined/>
+                  <CheckCircleOutlined />
                   We'll get back to you as soon as
                   possible.
                 </div>
@@ -179,7 +187,7 @@ export default function Contact() {
           <div className={styles.info}>
             <LocationOnIcon />
 
-            <div>
+            <div className={styles.infoText}>
               <h4>Address</h4>
               <p>
                 606 S Broadway
@@ -192,30 +200,36 @@ export default function Contact() {
           <div className={styles.info}>
             <PhoneIcon />
 
-            <div>
+            <div className={styles.infoText}>
               <h4>Phone</h4>
-              <p>(410) 522-9898</p>
+              <p>(667) 212-4841</p>
             </div>
           </div>
 
           <div className={styles.info}>
             <EmailIcon />
 
-            <div>
+            <div className={styles.infoText}>
               <h4>Email</h4>
-              <p>hello@kipporamen.com</p>
+              <p>kipporamen606@gmail.com</p>
             </div>
           </div>
 
           <div className={styles.info}>
             <AccessTimeIcon />
 
-            <div>
+            <div className={styles.infoText}>
               <h4>Hours</h4>
               <p>
-                Mon–Sun
+                Mon 5–8:30PM
                 <br />
-                11:00 AM – 10:00 PM
+                Tue–Thu 11:30AM–2:30PM & 5–8:30PM
+                <br />
+                Fri 11:30AM–2:30PM & 5–10PM
+                <br />
+                Sat 11:30AM–10PM
+                <br />
+                Sun 11:30AM–8:30PM
               </p>
             </div>
           </div>

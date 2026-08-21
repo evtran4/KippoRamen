@@ -5,8 +5,8 @@
 
 .nav {
   --vermilion: #c0392b;
-  --charcoal:  #111111;
-  --cream:     #f5f0e8;
+  --charcoal: #111111;
+  --cream: #f5f0e8;
 
   display: flex;
   align-items: center;
@@ -21,16 +21,21 @@
 }
 
 /* ── Logo ─────────────────────────────────────────────────────────────────── */
+
 .logo {
   display: flex;
   align-items: center;
   gap: 0.6rem;
 }
-.logoImg{
-    height: 30px;
-    width: 100%;
+
+.logoImg {
+  height: 30px;
+  width: 100%;
+  display: block;
 }
-/* ── Links ────────────────────────────────────────────────────────────────── */
+
+/* ── Desktop Links ────────────────────────────────────────────────────────── */
+
 .links {
   display: flex;
   list-style: none;
@@ -61,22 +66,27 @@
   opacity: 1;
 }
 
-/* ── CTAs ─────────────────────────────────────────────────────────────────── */
+/* ── Desktop CTAs ─────────────────────────────────────────────────────────── */
+
 .ctas {
   display: flex;
   gap: 0.75rem;
 }
 
-.btnOutline {
+.btnOutline,
+.btnFilled {
   padding: 0.45rem 1.1rem;
   font-family: "Zen Maru Gothic", sans-serif;
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.1em;
+  cursor: pointer;
+}
+
+.btnOutline {
   background: transparent;
   border: 1.5px solid var(--cream);
   color: var(--cream);
-  cursor: pointer;
   transition: background 0.2s, color 0.2s;
 }
 
@@ -86,15 +96,9 @@
 }
 
 .btnFilled {
-  padding: 0.45rem 1.1rem;
-  font-family: "Zen Maru Gothic", sans-serif;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
   background: var(--vermilion);
   border: 1.5px solid var(--vermilion);
   color: #fff;
-  cursor: pointer;
   transition: opacity 0.2s;
 }
 
@@ -102,9 +106,232 @@
   opacity: 0.85;
 }
 
+/* ── Hamburger ────────────────────────────────────────────────────────────── */
+
+.hamburger {
+  display: none;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: var(--cream);
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+
+.hamburgerOpen span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.hamburgerOpen span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburgerOpen span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ── Mobile Menu ──────────────────────────────────────────────────────────── */
+
+.mobileMenu {
+  display: none;
+}
+
+.mobileMenuContent {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  padding: 96px 32px 48px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ── Close Button ─────────────────────────────────────────────────────────── */
+
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.closeButton span {
+  position: absolute;
+  top: 19px;
+  left: 9px;
+
+  width: 22px;
+  height: 2px;
+  background-color: #ffffff;
+}
+
+.closeButton span:first-child {
+  transform: rotate(45deg);
+}
+
+.closeButton span:last-child {
+  transform: rotate(-45deg);
+}
+
+/* ── Mobile Navigation Links ──────────────────────────────────────────────── */
+
+.mobileLinks {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+.mobileLink {
+  background: none;
+  border: none;
+  padding: 0;
+
+  font-family: "Zen Maru Gothic", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+
+  color: #ffffff;
+  opacity: 0.75;
+
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.mobileLink:hover {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+.mobileLinkActive {
+  color: #ffffff;
+  opacity: 1;
+}
+
+/* ── Mobile CTAs ──────────────────────────────────────────────────────────── */
+
+.mobileCtas {
+  width: 100%;
+  max-width: 320px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  margin-top: 56px;
+}
+
+.mobileBtnOutline,
+.mobileBtnFilled {
+  width: 100%;
+  padding: 13px 20px;
+
+  font-family: "Zen Maru Gothic", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+
+  cursor: pointer;
+}
+
+.mobileBtnOutline {
+  background: transparent;
+  border: 1.5px solid #ffffff;
+  color: #ffffff;
+
+  transition: background 0.2s, color 0.2s;
+}
+
+.mobileBtnOutline:hover {
+  background: #ffffff;
+  color: var(--vermilion);
+}
+
+.mobileBtnFilled {
+  background: #ffffff;
+  border: 1.5px solid #ffffff;
+  color: #c0392b;
+
+  transition: opacity 0.2s;
+}
+
+.mobileBtnFilled:hover {
+  opacity: 0.85;
+}
+
 /* ── Responsive ───────────────────────────────────────────────────────────── */
+
 @media (max-width: 768px) {
-  .links {
+  .nav {
+    height: 60px;
+    padding: 0 1rem;
+  }
+
+  .logoImg {
+    height: 28px;
+  }
+
+  /* Hide desktop navigation */
+  .links,
+  .ctas {
     display: none;
+  }
+
+  /* Show hamburger */
+  .hamburger {
+    display: flex;
+  }
+
+  /* Full-screen vermilion menu */
+  .mobileMenu {
+    display: block;
+
+    position: fixed;
+    inset: 0;
+
+    z-index: 99;
+
+    background-color:#c0392b;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+      opacity 0.25s ease,
+      visibility 0.25s ease;
+  }
+
+  .mobileMenuOpen {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .mobileMenuContent {
+    overflow-y: auto;
   }
 }
