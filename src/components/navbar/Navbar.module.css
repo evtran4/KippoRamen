@@ -30,10 +30,11 @@
 
 .logoImg {
   height: 30px;
-  width: 100%;
+  width: auto;
+  max-width: 100%;
   display: block;
+  object-fit: contain;
 }
-
 /* ── Desktop Links ────────────────────────────────────────────────────────── */
 
 .links {
