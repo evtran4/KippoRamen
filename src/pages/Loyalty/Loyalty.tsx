@@ -4,7 +4,6 @@ import GroupPhotos from '../../components/GroupPhotos'
 
 import gallery1 from './../../assets/gallery-1.png';
 import gallery2 from './../../assets/gallery-2.png';
-import sushi1 from './../../assets/sushi1.jpg';
 import sushi2 from './../../assets/sushi2.jpg';
 import rice1 from './../../assets/rice1.jpg';
 import rice2 from './../../assets/rice2.jpg';

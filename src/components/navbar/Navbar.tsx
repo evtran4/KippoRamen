@@ -61,7 +61,7 @@ export default function Navbar({ activeLink = "HOME" }: NavbarProps) {
             CONTACT
           </button>
 
-            <a href='https://order.toasttab.com/online/kippo-ramen-606-s-broadway' target="_blank">
+            <a href='https://order.toasttab.com/online/kippo-ramen-606-s-broadway' target="_blank" rel="noreferrer">
               <button className={styles.btnFilled}>
                 ORDER NOW
               </button>
@@ -124,7 +124,7 @@ export default function Navbar({ activeLink = "HOME" }: NavbarProps) {
             >
               CONTACT
             </button>
-            <a href='https://order.toasttab.com/online/kippo-ramen-606-s-broadway' target="_blank">
+            <a href='https://order.toasttab.com/online/kippo-ramen-606-s-broadway' target="_blank" rel="noreferrer">
               <button className={styles.mobileBtnFilled}>
                 ORDER NOW
               </button>

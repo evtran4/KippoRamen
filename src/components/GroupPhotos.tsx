@@ -21,7 +21,7 @@ export default function GroupPhotos (params: {photos: string[], size?: number}) 
                 >
                     <img
                         src={src}
-                        alt={`Photo ${index + 1}`}
+                        alt={`${index + 1}`}
                         className={styles.groupPhotoImg}
                     />
                 </div>

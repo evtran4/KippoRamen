@@ -1,10 +1,10 @@
-interface review {
+export interface Review {
     name: string;
     text: string;
     stars: number;
 }
 
-export const reviews = [
+export const reviews: Review[] = [
     {
         name: "Daphne Barq",
         text: "Looove this spot. Food is great even if my pictures not so much! They have many tame options and sushi is great too. There's always some anime projecting on the wall and the music is very chill at perfect volume",

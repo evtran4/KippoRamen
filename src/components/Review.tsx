@@ -1,14 +1,9 @@
 import { useMemo } from "react";
 import styles from "./Components.module.css";
-
-export interface Review {
-  name: string;
-  text: string;
-  stars: number;
-}
+import type { Review as ReviewType } from '../reviews'
 
 interface GoogleReviewProps {
-  review: Review;
+  review: ReviewType;
 }
 
 const COLORS = [
