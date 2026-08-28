@@ -1,6 +1,8 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import styles from './Menu.module.css';
-import { menu, MenuItem } from '../../BasicMenu';
+import { MenuItem, MenuSection } from '../../BasicMenu';
+
+const MENU_URL = 'https://getmenu-qrzfpevbxa-uc.a.run.app';
 
 const BADGE_CLASS = {
   VEGETARIAN: styles.badgeVegetarian,
@@ -34,11 +36,47 @@ function ItemCard({ item }: { item: MenuItem }): JSX.Element {
 }
 
 export default function Menu(): JSX.Element {
-  const [active, setActive] = useState<string>(menu[0].title);
+  const [menu, setMenu] = useState<MenuSection[]>([]);
+  const [active, setActive] = useState<string>('');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchMenu = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+
+        const response = await fetch(
+          'https://getmenu-qrzfpevbxa-uc.a.run.app'
+        );
+
+        if (!response.ok) {
+          throw new Error(`Failed to fetch menu: ${response.status}`);
+        }
+
+        const data = await response.json();
+        const sections: MenuSection[] = data.sections ?? [];
+
+        setMenu(sections);
+
+        if (sections.length > 0) {
+          setActive(sections[0].title);
+        }
+      } catch (err) {
+        console.error('Failed to fetch menu:', err);
+        setError('Unable to load the menu. Please try again later.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMenu();
+  }, []);
 
   const activeSection = useMemo(
     () => menu.find((section) => section.title === active) ?? menu[0],
-    [active]
+    [menu, active]
   );
 
   return (
@@ -57,76 +95,94 @@ export default function Menu(): JSX.Element {
         </div>
       </header>
 
-      <div className={styles.tabsWrapper}>
-        <nav className={styles.tabs} aria-label="Menu sections">
-          {menu.map((section) => (
-            <button
-              key={section.title}
-              type="button"
-              className={`${styles.tab} ${
-                active === section.title ? styles.tabActive : ''
-              }`}
-              onClick={() => setActive(section.title)}
-              aria-current={active === section.title ? 'page' : undefined}
-            >
-              {section.title}
-            </button>
-          ))}
-        </nav>
-      </div>
+      {loading && (
+        <main className={styles.section}>
+          <p>Loading menu...</p>
+        </main>
+      )}
 
-      <main className={styles.section}>
-        <div className={styles.sectionHeading}>
-          <span className={styles.star} aria-hidden="true">
-            ✦
-          </span>
+      {error && (
+        <main className={styles.section}>
+          <p>{error}</p>
+        </main>
+      )}
 
-          <h2 className={styles.sectionTitle}>
-            {activeSection.title}
-          </h2>
-
-          <span className={styles.star} aria-hidden="true">
-            ✦
-          </span>
-        </div>
-
-        <div className={styles.sectionContainer}>
-          {activeSection.subsections ? (
-            activeSection.subsections.map((subsection) => (
-              <section
-                key={subsection.title}
-                className={styles.subsection}
-                aria-labelledby={`subsection-${subsection.title}`}
-              >
-                <h3
-                  id={`subsection-${subsection.title}`}
-                  className={styles.subsectionTitle}
+      {!loading && !error && menu.length > 0 && (
+        <>
+          <div className={styles.tabsWrapper}>
+            <nav className={styles.tabs} aria-label="Menu sections">
+              {menu.map((section) => (
+                <button
+                  key={section.title}
+                  type="button"
+                  className={`${styles.tab} ${
+                    active === section.title ? styles.tabActive : ''
+                  }`}
+                  onClick={() => setActive(section.title)}
+                  aria-current={
+                    active === section.title ? 'page' : undefined
+                  }
                 >
-                  {subsection.title}
-                </h3>
+                  {section.title}
+                </button>
+              ))}
+            </nav>
+          </div>
 
-                {subsection.description && (
-                  <p className={styles.subsectionDescription}>
-                    {subsection.description}
-                  </p>
-                )}
+          <main className={styles.section}>
+            <div className={styles.sectionHeading}>
+              <span className={styles.star} aria-hidden="true">
+                ✦
+              </span>
 
+              <h2 className={styles.sectionTitle}>
+                {activeSection.title}
+              </h2>
+
+              <span className={styles.star} aria-hidden="true">
+                ✦
+              </span>
+            </div>
+
+            <div className={styles.sectionContainer}>
+              {activeSection.subsections ? (
+                activeSection.subsections.map((subsection) => (
+                  <section
+                    key={subsection.title}
+                    className={styles.subsection}
+                    aria-labelledby={`subsection-${subsection.title}`}
+                  >
+                    <h3
+                      id={`subsection-${subsection.title}`}
+                      className={styles.subsectionTitle}
+                    >
+                      {subsection.title}
+                    </h3>
+
+                    {subsection.description && (
+                      <p className={styles.subsectionDescription}>
+                        {subsection.description}
+                      </p>
+                    )}
+
+                    <div className={styles.grid}>
+                      {subsection.items.map((item) => (
+                        <ItemCard key={item.label} item={item} />
+                      ))}
+                    </div>
+                  </section>
+                ))
+              ) : (
                 <div className={styles.grid}>
-                  {subsection.items.map((item) => (
+                  {activeSection.items?.map((item) => (
                     <ItemCard key={item.label} item={item} />
                   ))}
                 </div>
-              </section>
-            ))
-          ) : (
-            <div className={styles.grid}>
-              {activeSection.items?.map((item) => (
-                <ItemCard key={item.label} item={item} />
-              ))}
+              )}
             </div>
-          )}
-        </div>
-      </main>
+          </main>
+        </>
+      )}
     </div>
   );
 }
