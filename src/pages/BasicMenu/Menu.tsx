@@ -48,7 +48,7 @@ export default function Menu(): JSX.Element {
         setError(null);
 
         const response = await fetch(
-          'https://getmenu-qrzfpevbxa-uc.a.run.app'
+          MENU_URL
         );
 
         if (!response.ok) {
